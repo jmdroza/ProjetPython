@@ -12,9 +12,13 @@ class meteoObject:
 
 
 def hexa_to_temperature(hexadecimal):
-    if (hexadecimal == ''):
+    if hexadecimal == '':
         return;
-    return int(hexadecimal, 16) / 10
+    n_hexa = hexadecimal[1:4]
+    if int(hexadecimal[0:1]) == 4:
+        return int(n_hexa, 16) / 10 * -1
+
+    return int(n_hexa, 16) / 10
 
 
 # format date "2018/12/13 02:29:17"
