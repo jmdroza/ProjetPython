@@ -4,7 +4,7 @@ import meteo
 from tinydb import TinyDB, Query
 
 def function():
-    url = "http://app.objco.com:8099/?account=1IF0PIBK37&limit=5"
+    url = "http://app.objco.com:8099/?account=1IF0PIBK37&limit=2"
     # Get dummy data using an API
     reponse = requests.get(url)
 
