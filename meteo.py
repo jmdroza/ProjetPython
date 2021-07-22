@@ -38,6 +38,17 @@ def get_full_tag(string):
 def get_tag_information(tag):
     tag = "m"
 
+#tag1 = meteoObject()
+
+tag = "001900020B06182660000E1E0"
+def split_tag(tag):
+    chunks = (4,2,2,2,9,4,2)
+    assert len(tag) >= sum(chunks)
+    it = iter(tag)
+    result = [(''.join(islice(it, i))) for i in chunks]
+    print(result)
+
+    return result
 
 
 
@@ -48,14 +59,14 @@ def create_meteo_object_from_data(data):
     l = []
     for x in range(len(data)):
         # get hexa data
+        tab = split_tag(get_full_tag(data[x][1]))
         data2 = json.dumps(data[x][1])
         l.append(meteoObject(data[x][0],
-                             6,  # temp capteur id
-                             hexa_to_temperature(data2[101:105]),
+                             tab[4],  # temp capteur id
+                             hexa_to_temperature(tab[5]),
                              data[x][2],
                              hexa_to_date(data2[105:107])))
 
-        get_full_tag(data[0][1])
     return l
 
 

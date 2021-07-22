@@ -18,7 +18,7 @@ class Test(TestCase):
 
 #class Test(TestCase):
 #    def test_hexa_to_date(self):
-#        assert hexa_to_temperature("120C0D021D11") == "2018/12/13 02:29:17"
+#        assert hexa_to_date("120C0D021D11") == "2018/12/13 02:29:17"
 
 
 #class Test(TestCase):
