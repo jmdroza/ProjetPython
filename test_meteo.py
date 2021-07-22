@@ -6,7 +6,7 @@ from meteo import hexa_to_temperature, get_full_tag
 
 class Test(TestCase):
     def test_hexa_to_temperature(self):
-        assert hexa_to_temperature("40D4") == -22.7
+        assert hexa_to_temperature("40D4") == -21.2
         assert hexa_to_temperature("00E3") == 22.7
         assert hexa_to_temperature("001A") == 2.6
         assert hexa_to_temperature("007F") == 12.7
