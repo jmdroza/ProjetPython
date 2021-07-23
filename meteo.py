@@ -19,11 +19,14 @@ def hexa_to_temperature(hexadecimal):
         return int(n_hexa, 16) / 10 * -1
 
     return int(n_hexa, 16) / 10
-
+def hexa_to_humidity(hexa):
+    if hexa == '' or hexa == 'FF':
+        return;
+    return int(hexa,16)
 
 def get_full_tag(string):
     start_index_tag_information = 76
-    tag_length = int(string[start_index_tag_information:start_index_tag_information + 4], 16) * 2
+    tag_length = int(string[start_index_tag_information:start_index_tag_information + 5], 16) * 2
     tag = string[start_index_tag_information:start_index_tag_information + tag_length]
     print(tag)
     return tag
@@ -34,7 +37,6 @@ def split_tag(tag):
     assert len(tag) >= sum(tag_info_chunks)
     it = iter(tag)
     info = [(''.join(islice(it, i))) for i in tag_info_chunks]
-    print(info[0])
 
     tag_data_length = int(info[0], 16) * 2
     number_tag = int(info[2], 16)
@@ -44,13 +46,13 @@ def split_tag(tag):
     print("tag_length = ", length_of_per_tag)
     print('\n')
 
+    tagX = []
     for n in range(number_tag):
         print("boucle n°", n)
         temp = tag[10+length_of_per_tag*n:10+length_of_per_tag*(n+1)]
-        tagX = {"tagN":n, "capteur_id":temp[0:8], "status":temp[8:10], "battery_voltage":temp[10:14], "temperature":temp[14:18], "humidity":temp[18:20]}
-        print(tagX)
+        tagX.append({"tagN":n, "capteur_id":temp[0:8], "status":temp[8:10], "battery_voltage":temp[10:14], "temperature":temp[14:18], "humidity":temp[18:20]})
 
-
+    print(tagX)
     return tagX
 
 
@@ -60,19 +62,13 @@ def create_meteo_object_from_data(data):
     for x in range(len(data)):
         # get hexa data
         tab = split_tag(get_full_tag(data[x][1]))
-        data2 = json.dumps(data[x][1])
-        l.append(meteoObject(data[x][0],  # measure id
-                             tab["capteur_id"],  # temp capteur id
-                             hexa_to_temperature(tab["temperature"]),
-                             tab["humidity"],  # humidity
-                             data[x][2]))
 
         capteur_number = int(data[x][1][83:84], 16)
-        if capteur_number == 2:
+        for n in range(capteur_number):
             l.append(meteoObject(data[x][0],  # measure id
-                                 tab["capteur_id"],  # temp capteur id
-                                 hexa_to_temperature(tab["temperature"]),
-                                 tab["humidity"],  # humidity
+                                 tab[n]["capteur_id"],  # temp capteur id
+                                 hexa_to_temperature(tab[n]["temperature"]),
+                                 hexa_to_humidity(tab[n]["humidity"]),  # humidity
                                  data[x][2]))
     return l
 
