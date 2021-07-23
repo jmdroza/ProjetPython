@@ -12,9 +12,9 @@ def function():
     data = json.loads(reponse.text)
     list_meteo = meteo.create_meteo_object_from_data(data)
     res = ""
-    for x in list_meteo :
+    for x in list_meteo:
         res += meteo.toString(x) + "\n"
     print(res)
-    return res
+    return list_meteo
 
 function()

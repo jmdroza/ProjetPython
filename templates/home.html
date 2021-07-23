@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand">Projet Python</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            </div>
+        </div>
+    </nav>
+    <!-- header -->
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Projet Python</title>
+</head>
+<body>
+
+<h1>Données des capteurs</h1>
+<div class="col-6">
+    <table class="table table-striped">
+        <thead>
+                <tr>
+                    <th class="col-2">Date</th>
+                     <th class="col-2">Capteur n°</th>
+                     <th class="col-2">Température (C°)</th>
+                     <th class="col-2">Humidité (%)</th>
+                </tr>
+        </thead>
+        <tbody>
+        {% for i in range(0, len) %}
+                <tr>
+                  <td class="col-2">{{ content[i].date }}</td>
+                  <td class="col-2">{{ content[i].capteur_id }}</td>
+                  <td class="col-2">{{ content[i].temperature }}</td>
+                  <td class="col-2">{{ content[i].humidity }}</td>
+                </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+                crossorigin="anonymous"></script>
+    </div>
+</body>
+<!-- footer -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-bottom">
+    <div class="container-fluid">
+        <a class="navbar-brand">RIL19</a>
+    </div>
+</nav>
+<!-- footer -->
+</html>

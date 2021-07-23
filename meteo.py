@@ -80,3 +80,4 @@ def create_meteo_object_from_data(data):
 def toString(p):
     return f'[==== Mesure n° {p.measure_id} le {p.date} ====] ' \
            f' \n Capteur {p.capteur_id} : {p.temperature} C° : {p.humidity}% humidité  \n'
+
